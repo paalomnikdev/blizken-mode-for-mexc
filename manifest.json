@@ -1,0 +1,13 @@
+{
+    "manifest_version": 2,
+  
+    "name": "Blizken mode for MEXC",
+    "version": "0.1.0",
+    "description": "This extension will make PNL values white.",
+  
+    "content_scripts": [{
+      "js": ["content.js"],
+      "matches": ["https://futures.mexc.com/exchange/*"]
+    }]
+  
+  }
