@@ -1,5 +1,6 @@
 # Description
 This is a simple Chrome extension that turns PNL values white on MEXC futures trading, inspired by Blizken.
+Google is asking for $5 to publish the extension to the Chrome Store. I don't think I need to do this because it was created just for fun, so anyone can download the code and install it in their browser.
 
 # How to install
 1. Download the code [here](https://github.com/paalomnikdev/blizken-mode-for-mexc/archive/refs/heads/main.zip)
