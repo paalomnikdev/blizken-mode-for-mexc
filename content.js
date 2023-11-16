@@ -44,7 +44,29 @@ const observer = new MutationObserver(function (mutations, mutationInstance) {
     }
 });
 
-observer.observe(document, {
-    childList: true,
-    subtree:   true
+chrome.storage.sync.get(['bliz-enabled']).then((result) => {
+    if (result['bliz-enabled']) {
+        observer.observe(document, {
+            childList: true,
+            subtree:   true
+        });
+
+    }
 });
+
+function onStorageChange(changes, areaName) {
+    if (changes['bliz-enabled']) {
+        if (changes['bliz-enabled']['newValue'] == true) {
+            observer.observe(document, {
+                childList: true,
+                subtree:   true
+            });
+            return;
+        }
+        if (changes['bliz-enabled']['oldValue'] == true && changes['bliz-enabled']['newValue'] == false) {
+            location.reload();
+        }
+    }
+}
+
+chrome.storage.onChanged.addListener(onStorageChange);
