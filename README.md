@@ -17,3 +17,6 @@ Google is asking for $5 to publish the extension to the Chrome Store. I don't th
 2. Check developer mode is enabled
 3. Remove existing extension
 4. Follow instructions from installation section
+
+# Supporters
+![alt text](https://github.com/[username]/[reponame]/blob/main/jcc.png?raw=true)
