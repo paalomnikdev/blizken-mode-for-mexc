@@ -1,31 +1,56 @@
-function on(img, buttonText) {
-    chrome.storage.sync.set({ 'bliz-enabled': true }).then(() => {
+const COLORS_ENABLED = 'color-enabled';
+const PNL_REMOVE = 'pnl-remove';
+
+function colorsOn(img, buttonText) {
+    chrome.storage.sync.set({ [COLORS_ENABLED]: true }).then(() => {
         img.src = './img/bliz.jpeg';
-        buttonText.textContent = 'On';
         buttonText.style.color = '#ffffff';
     });
 }
 
-function off(img, buttonText) {
-    chrome.storage.sync.set({ 'bliz-enabled': false }).then(() => {
+function colorsOff(img, buttonText) {
+    chrome.storage.sync.set({ [COLORS_ENABLED]: false }).then(() => {
         img.src = './img/bliz.png';
-        buttonText.textContent = 'Off'
         buttonText.style.color = 'green';
     });
 }
 
+function hideTotalPNL(pnlSwitch) {
+    chrome.storage.sync.set({ [PNL_REMOVE]: true }).then(() => {
+        pnlSwitch.checked = true;
+    });
+}
+
+function showTotalPNL(pnlSwitch) {
+    chrome.storage.sync.set({ [PNL_REMOVE]: false }).then(() => {
+        pnlSwitch.checked = false;
+    });
+}
+
 (function() {
-    chrome.storage.sync.get(['bliz-enabled']).then((result) => {
-        const extEnabled = result['bliz-enabled'] || false
+    // colors
+    chrome.storage.sync.get([COLORS_ENABLED]).then((result) => {
+        const extEnabled = result[COLORS_ENABLED] || false
         const checkbox = document.getElementById('switch');
         const img = document.getElementById('bliz');
         const buttonText = document.getElementById('button-text');
 
         checkbox.addEventListener('change', (event) => {
-            event.currentTarget.checked ? on(img, buttonText) : off(img, buttonText);
+            event.currentTarget.checked ? colorsOn(img, buttonText) : colorsOff(img, buttonText);
         });
 
         checkbox.checked = extEnabled;
-        extEnabled ? on(img, buttonText) : off(img, buttonText);
+        extEnabled ? colorsOn(img, buttonText) : colorsOff(img, buttonText);
+    });
+    // PNL block
+    chrome.storage.sync.get([PNL_REMOVE]).then((result) => {
+        const enabled = result[PNL_REMOVE] || false;
+        checkbox = document.getElementById('totalPnlSwitch');
+
+        enabled ? hideTotalPNL(checkbox) : showTotalPNL(checkbox);
+
+        checkbox.addEventListener('change', (event) => {
+            event.currentTarget.checked ? hideTotalPNL(checkbox) : showTotalPNL(checkbox);
+        });
     });
 })();
