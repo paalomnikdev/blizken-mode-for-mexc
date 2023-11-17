@@ -19,4 +19,4 @@ Google is asking for $5 to publish the extension to the Chrome Store. I don't th
 4. Follow instructions from installation section
 
 # Supporters
-![alt text](/img/jcc.png)
+[![alt text](/img/jcc.png)](https://discord.gg/MQKaT8Nt)
