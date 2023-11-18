@@ -5,6 +5,14 @@ function makeWhite(el) {
     el.style.color = 'white';
 }
 
+function removeWhite(elements) {
+    elements.forEach((elmnts) => {
+        Array.from(elmnts).forEach(function (element) {
+            element.style.color = null;
+        });
+    });
+}
+
 function removePNL(el) {
     el.style.display = 'none';
 }
@@ -123,7 +131,15 @@ function onStorageChange(changes, areaName) {
             return;
         }
         if (changes[COLORS_ENABLED]['oldValue'] == true && changes[COLORS_ENABLED]['newValue'] == false) {
-            location.reload();
+            observer.disconnect();
+            removeWhite([
+                document.getElementsByClassName('pages-contract-assets-up pages-contract-assets-pnl'),
+                document.getElementsByClassName('pages-contract-assets-less pages-contract-assets-pnl'),
+                document.getElementsByClassName('pages-contract-handlerecord-position-index-up'),
+                document.getElementsByClassName('pages-contract-handlerecord-position-index-less'),
+                document.querySelectorAll('.tooltip-dashed.pages-contract-handlerecord-component-realizedpnl-index-less'),
+                document.querySelectorAll('.tooltip-dashed.pages-contract-handlerecord-component-realizedpnl-index-up')
+            ]);
         }
     }
 }

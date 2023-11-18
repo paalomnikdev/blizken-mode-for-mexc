@@ -2,7 +2,7 @@
     "manifest_version": 3,
     "author": "Ivan Chornyi",
     "name": "Blizken mode for MEXC",
-    "version": "0.3.0",
+    "version": "0.3.1",
     "description": "This extension will make PNL values white.",
     "icons": {
       "16": "icons/icon16.png",
