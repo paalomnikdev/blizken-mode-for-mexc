@@ -1,3 +1,5 @@
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+
 # Description
 This is a simple Chrome extension that turns PNL values white on MEXC futures trading, inspired by Blizken.
 Google is asking for $5 to publish the extension to the Chrome Store. I don't think I need to do this because it was created just for fun, so anyone can download the code and install it in their browser.
