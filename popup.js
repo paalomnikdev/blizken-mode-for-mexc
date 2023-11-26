@@ -2,6 +2,10 @@ const COLORS_ENABLED = 'color-enabled';
 const PNL_REMOVE = 'pnl-remove';
 
 function colorsOn(img, buttonText) {
+    chrome.tabs.query({currentWindow: true, active: true}, function (tabs){
+        var activeTab = tabs[0];
+        chrome.tabs.sendMessage(activeTab.id, {[COLORS_ENABLED]: true});
+    });
     chrome.storage.sync.set({ [COLORS_ENABLED]: true }).then(() => {
         img.src = './img/bliz.jpeg';
         buttonText.style.color = '#ffffff';
@@ -9,6 +13,10 @@ function colorsOn(img, buttonText) {
 }
 
 function colorsOff(img, buttonText) {
+    chrome.tabs.query({currentWindow: true, active: true}, function (tabs){
+        var activeTab = tabs[0];
+        chrome.tabs.sendMessage(activeTab.id, {[COLORS_ENABLED]: false});
+    });
     chrome.storage.sync.set({ [COLORS_ENABLED]: false }).then(() => {
         img.src = './img/bliz.png';
         buttonText.style.color = 'green';
@@ -16,12 +24,20 @@ function colorsOff(img, buttonText) {
 }
 
 function hideTotalPNL(pnlSwitch) {
+    chrome.tabs.query({currentWindow: true, active: true}, function (tabs){
+        var activeTab = tabs[0];
+        chrome.tabs.sendMessage(activeTab.id, {[PNL_REMOVE]: true});
+    });
     chrome.storage.sync.set({ [PNL_REMOVE]: true }).then(() => {
         pnlSwitch.checked = true;
     });
 }
 
 function showTotalPNL(pnlSwitch) {
+    chrome.tabs.query({currentWindow: true, active: true}, function (tabs){
+        var activeTab = tabs[0];
+        chrome.tabs.sendMessage(activeTab.id, {[PNL_REMOVE]: false});
+    });
     chrome.storage.sync.set({ [PNL_REMOVE]: false }).then(() => {
         pnlSwitch.checked = false;
     });
