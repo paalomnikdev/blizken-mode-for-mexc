@@ -30,12 +30,12 @@ function returnPNL(el) {
 }
 
 const observer = new MutationObserver(function (mutations, mutationInstance) {
-    const pnlTotal = document.getElementsByClassName('pages-contract-assets-up pages-contract-assets-pnl');
+    const pnlTotal = document.getElementsByClassName('assets_pnl__ibpnA');
     const pnlTotalNegative = document.getElementsByClassName('pages-contract-assets-less pages-contract-assets-pnl');
-    const positivePnl = document.getElementsByClassName('pages-contract-handlerecord-position-index-up');
-    const negativePNL = document.getElementsByClassName('pages-contract-handlerecord-position-index-less');
-    const negativeRealizedPNL = document.querySelectorAll('.tooltip-dashed.pages-contract-handlerecord-component-realizedpnl-index-less');
-    const positiveRealizedPNL = document.querySelectorAll('.tooltip-dashed.pages-contract-handlerecord-component-realizedpnl-index-up');
+    const positivePnl = document.getElementsByClassName('Position_up__svdTn');
+    const negativePNL = document.getElementsByClassName('Position_less__Aewy_');
+    const negativeRealizedPNL = document.querySelectorAll('.RealizedPNL_less__kWoRS');
+    const positiveRealizedPNL = document.querySelectorAll('.RealizedPNL_up__HP_bk');
 
     if (negativeRealizedPNL) {
         Array.from(negativeRealizedPNL).forEach(function (element) {
@@ -79,7 +79,7 @@ const observer = new MutationObserver(function (mutations, mutationInstance) {
 });
 
 const totalPnlObserver = new MutationObserver(function (mutations, mutationInstance) {
-    const pnlTotalBlock = document.getElementsByClassName('pages-contract-assets-pnlItem');
+    const pnlTotalBlock = document.getElementsByClassName('assets_asset__da0dl');
     
     if (pnlTotalBlock) {
         Array.from(pnlTotalBlock).forEach(function (element) {
@@ -111,12 +111,11 @@ chrome.storage.sync.get([COLORS_ENABLED]).then((result) => {
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request[COLORS_ENABLED] !== undefined) {
         const coloredElements = [
-            document.getElementsByClassName('pages-contract-assets-up pages-contract-assets-pnl'),
-            document.getElementsByClassName('pages-contract-assets-less pages-contract-assets-pnl'),
-            document.getElementsByClassName('pages-contract-handlerecord-position-index-up'),
-            document.getElementsByClassName('pages-contract-handlerecord-position-index-less'),
-            document.querySelectorAll('.tooltip-dashed.pages-contract-handlerecord-component-realizedpnl-index-less'),
-            document.querySelectorAll('.tooltip-dashed.pages-contract-handlerecord-component-realizedpnl-index-up')
+            document.getElementsByClassName('Position_less__Aewy_'),
+            document.getElementsByClassName('Position_up__svdTn'),
+            document.getElementsByClassName('RealizedPNL_less__kWoRS'),
+            document.getElementsByClassName('RealizedPNL_up__HP_bk'),
+            document.querySelectorAll('.assets_pnl__ibpnA'),
         ];
 
         if (request[COLORS_ENABLED]) {
@@ -133,7 +132,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
 
     if (request[PNL_REMOVE] !== undefined) {
-        const pnlTotalBlock = document.getElementsByClassName('pages-contract-assets-pnlItem');
+        const pnlTotalBlock = document.getElementsByClassName('assets_asset__da0dl');
 
         if (request[PNL_REMOVE]) {
             if (pnlTotalBlock) {
