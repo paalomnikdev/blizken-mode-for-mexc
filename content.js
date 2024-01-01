@@ -79,12 +79,10 @@ const observer = new MutationObserver(function (mutations, mutationInstance) {
 });
 
 const totalPnlObserver = new MutationObserver(function (mutations, mutationInstance) {
-    const pnlTotalBlock = document.getElementsByClassName('assets_asset__da0dl');
+    const pnlTotalBlock = document.getElementById('mexc-web-inspection-futures-exchange-assetsCard');
     
     if (pnlTotalBlock) {
-        Array.from(pnlTotalBlock).forEach(function (element) {
-            removePNL(element);
-        });
+        removePNL(pnlTotalBlock);
     }
 });
 
@@ -132,13 +130,11 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
 
     if (request[PNL_REMOVE] !== undefined) {
-        const pnlTotalBlock = document.getElementsByClassName('assets_asset__da0dl');
+        const pnlTotalBlock = document.getElementById('mexc-web-inspection-futures-exchange-assetsCard');
 
         if (request[PNL_REMOVE]) {
             if (pnlTotalBlock) {
-                Array.from(pnlTotalBlock).forEach(function (element) {
-                    removePNL(element);
-                });
+                removePNL(pnlTotalBlock);
             }
             totalPnlObserver.observe(document, {
                 childList: true,
@@ -146,10 +142,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
             });
         } else {
             if (pnlTotalBlock) {
-                Array.from(pnlTotalBlock).forEach(function (element) {
-                    totalPnlObserver.disconnect();
-                    returnPNL(element);
-                });
+                returnPNL(pnlTotalBlock);
             }
         }
     }
